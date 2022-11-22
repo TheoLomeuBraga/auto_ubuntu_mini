@@ -1,5 +1,7 @@
 import psutil
+
 import os
+
 
 final_comand = "sudo reboot"
 
@@ -60,13 +62,10 @@ def get_pc_info():
     get_CPUs()
     get_RAM()
     define_power()
-    input("press enter to continue")
+
 
 def make_instalation():
     global power
-    get_CPUs()
-    get_RAM()
-    define_power()
     install_basics()
     install_best_ui()
     if power > 0:
@@ -75,7 +74,11 @@ def make_instalation():
     
 
 #get_pc_info()
-make_instalation()
+get_pc_info()
+proceed = input("proceed with installation y/n \n")
+
+if proceed == "y" or proceed == "Y":
+    make_instalation()
 
 
 
