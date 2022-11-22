@@ -23,7 +23,10 @@ def define_power():
         power = 1
     if RAM > 1.8 and CPUs >= 2:
         power = 2
-    
+    if RAM > 3.8 and CPUs >= 4:
+        power = 3
+    if RAM > 7.8 and CPUs >= 8:
+        power = 4
     
     
     
@@ -31,7 +34,7 @@ def define_power():
 
 def install_basics():
     print("instaling basic pakages")
-    os.system("sudo apt install xorg firefox wicd ")
+    os.system("sudo apt install xorg firefox wicd neofetch htop nano")
 
 def install_extras():
     print("instaling extra pakages")
@@ -47,6 +50,9 @@ def install_best_ui():
             os.system("sudo apt install sddm xfce4")
             final_comand = "sudo sddm"
         case 3:
+            os.system("sudo add-apt-repository ppa:embrosyn/cinnamon;sudo apt update;sudo apt install sddm cinnamon-desktop")
+            final_comand = "sudo sddm"
+        case 4:
             os.system("sudo apt install sddm kde-full")
             final_comand = "sudo sddm"
 
@@ -57,11 +63,14 @@ def get_pc_info():
     input("press enter to continue")
 
 def make_instalation():
+    global power
     get_CPUs()
     get_RAM()
     define_power()
     install_basics()
     install_best_ui()
+    if power > 0:
+        install_extras()
     os.system(final_comand)
     
 
