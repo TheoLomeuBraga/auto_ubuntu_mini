@@ -74,10 +74,8 @@ def make_instalation():
     os.system(final_comand)
     
 
-
-
-get_pc_info()
-#make_instalation()
+#get_pc_info()
+make_instalation()
 
 
 
