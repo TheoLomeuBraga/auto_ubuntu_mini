@@ -49,23 +49,23 @@ def define_power():
 
 def select_best_ui():
     global power,pakages,final_commands,aditional_repositorys
-    match power:
-        case 0:
+    if power == 0:
             pakages += ["slim" ,"icewm","thunar"]
             final_commands += ["sudo slim"]
-        case 1:
+    elif power == 1:
             pakages += ["slim" ,"lxde"]
             final_commands += ["sudo slim"]
-        case 2:
+    elif power == 2:
             pakages += ["sddm" ,"xfce4"]
             final_commands += ["sudo sddm"]
-        case 3:
+    elif power == 3:
             pakages += ["sddm" ,"cinnamon-desktop"]
             aditional_repositorys += ["ppa:embrosyn/cinnamon"]
             final_commands += ["sudo sddm"]
-        case 4:
+    elif power == 4:
             pakages += ["sddm" ,"kde-full"]
             final_commands += ["sudo sddm"]
+    
 
 def install():
     global pakages,final_commands,aditional_repositorys
