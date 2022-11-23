@@ -59,8 +59,8 @@ def select_best_ui():
             pakages += ["sddm" ,"xfce4"]
             final_commands += ["sudo sddm"]
     elif power == 3:
-            pakages += ["sddm" ,"cinnamon-desktop"]
-            aditional_repositorys += ["ppa:embrosyn/cinnamon"]
+            pakages += ["sddm" ,"cinnamon-desktop-environment"]
+            aditional_repositorys += ["universe"]
             final_commands += ["sudo sddm"]
     elif power == 4:
             pakages += ["sddm" ,"kde-full"]
@@ -77,6 +77,10 @@ def install():
     print("runing: ",command_add_repository)
     os.system(command_add_repository)
 
+    #updating pakage manager
+    print("runing: ",pakage_manager_update_repository_command)
+    os.system(pakage_manager_update_repository_command)
+
     #install pakages
     command_install_pakages = pakage_manager_instalation_command
     for i in pakages :
@@ -84,9 +88,7 @@ def install():
     print("runing: ",command_install_pakages)
     os.system(command_install_pakages)
 
-    #updating pakage manager
-    print("runing: ",pakage_manager_update_repository_command)
-    os.system(pakage_manager_update_repository_command)
+    
 
     #run final comands
     for i in final_commands :
