@@ -1,6 +1,8 @@
 import psutil
+
 import os
 
+<<<<<<< HEAD
 pakage_manager_add_repository_command = "sudo apt-get install software-properties-common;sudo add-apt-repository "
 
 aditional_repositorys = []
@@ -12,6 +14,10 @@ pakage_manager_instalation_command = "sudo apt install"
 pakages = ["xorg ","firefox","wicd","neofetch","htop","nano","gnome-software","discovery"]
 
 final_commands = []
+=======
+
+final_comand = "sudo reboot"
+>>>>>>> 840d0fc57aeff0e9b40839fe409c1e41cb0b940f
 
 CPUs = 0
 def get_CPUs():
