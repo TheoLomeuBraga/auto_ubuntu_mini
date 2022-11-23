@@ -1,7 +1,17 @@
 import psutil
 import os
 
-final_comand = "sudo reboot"
+pakage_manager_add_repository_command = "sudo apt-get install software-properties-common;sudo add-apt-repository "
+
+aditional_repositorys = []
+
+pakage_manager_update_repository_command = "sudo apt update"
+
+pakage_manager_instalation_command = "sudo apt install"
+
+pakages = ["xorg ","firefox","wicd","neofetch","htop","nano","gnome-software","discovery"]
+
+final_commands = []
 
 CPUs = 0
 def get_CPUs():
@@ -32,50 +42,96 @@ def define_power():
     
     print("power is: ",power)
 
-def install_basics():
-    print("instaling basic pakages")
-    os.system("sudo apt install xorg firefox wicd neofetch htop nano")
 
-def install_extras():
-    print("instaling extra pakages")
-    os.system("sudo apt install gnome-software discovery ")
 
-def install_best_ui():
-    global power
+
+
+def select_best_ui():
+    global power,pakages,final_commands,aditional_repositorys
     match power:
+        case 0:
+            pakages += ["slim" ,"icewm","thunar"]
+            final_commands += ["sudo slim"]
         case 1:
-            os.system("sudo apt install slim lxde")
-            final_comand = "sudo slim"
+            pakages += ["slim" ,"lxde"]
+            final_commands += ["sudo slim"]
         case 2:
-            os.system("sudo apt install sddm xfce4")
-            final_comand = "sudo sddm"
+            pakages += ["sddm" ,"xfce4"]
+            final_commands += ["sudo sddm"]
         case 3:
-            os.system("sudo add-apt-repository ppa:embrosyn/cinnamon;sudo apt update;sudo apt install sddm cinnamon-desktop")
-            final_comand = "sudo sddm"
+            pakages += ["sddm" ,"cinnamon-desktop"]
+            aditional_repositorys += ["ppa:embrosyn/cinnamon"]
+            final_commands += ["sudo sddm"]
         case 4:
-            os.system("sudo apt install sddm kde-full")
-            final_comand = "sudo sddm"
+            pakages += ["sddm" ,"kde-full"]
+            final_commands += ["sudo sddm"]
+
+def install():
+    global pakages,final_commands,aditional_repositorys
+
+    #add repositorys
+    command_add_repository = pakage_manager_add_repository_command
+    for i in aditional_repositorys :
+        command_add_repository += " " + i
+    print("runing: ",command_add_repository)
+    os.system(command_add_repository)
+
+    #install pakages
+    command_install_pakages = pakage_manager_instalation_command
+    for i in pakages :
+        command_install_pakages += " " + i
+    print("runing: ",command_install_pakages)
+    os.system(command_install_pakages)
+
+    #updating pakage manager
+    print("runing: ",pakage_manager_update_repository_command)
+    os.system(pakage_manager_update_repository_command)
+
+    #run final comands
+    for i in final_commands :
+        print("runing: ",i)
+        os.system(i)
+    
+    
+    
+    
+
+    
+    
+
+def want_continue():
+    repos = ""
+    for i in aditional_repositorys :
+        repos += " " + i
+    print("you will add this repositorys: ",repos)
+
+    paks = ""
+    for i in pakages :
+        paks += " " + i
+    print("you will add this pakages: ",paks)
+
+    proceed = input("you will proceed with the installation y/n \n")
+    if proceed == "y" or proceed == "Y":
+        install()
+
+
 
 def get_pc_info():
     get_CPUs()
     get_RAM()
     define_power()
-    input("press enter to continue")
+    input("press enter to continue\n")
 
 def make_instalation():
-    global power
     get_CPUs()
     get_RAM()
     define_power()
-    install_basics()
-    install_best_ui()
-    if power > 0:
-        install_extras()
-    os.system(final_comand)
+    select_best_ui()
+    want_continue()
+    
     
 
 #get_pc_info()
 make_instalation()
-
-
+input("press enter to continue\n")
 
