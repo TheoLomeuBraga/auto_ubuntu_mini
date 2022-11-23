@@ -71,11 +71,11 @@ def install():
     global pakages,final_commands,aditional_repositorys
 
     #add repositorys
-    command_add_repository = pakage_manager_add_repository_command
     for i in aditional_repositorys :
-        command_add_repository += " " + i
-    print("runing: ",command_add_repository)
-    os.system(command_add_repository)
+        os.system(pakage_manager_add_repository_command + " " + i)
+        print("runing: ",pakage_manager_add_repository_command + " " + i)
+    
+    
 
     #updating pakage manager
     print("runing: ",pakage_manager_update_repository_command)
