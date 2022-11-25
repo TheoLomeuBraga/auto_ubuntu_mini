@@ -53,7 +53,9 @@ def select_best_ui():
             pakages += ["slim" ,"icewm","thunar"]
             final_commands += ["sudo slim"]
     elif power == 1:
-            pakages += ["slim" ,"lxde"]
+            #pakages += ["slim" ,"lxde"]
+            #final_commands += ["sudo slim"]
+            pakages += ["slim" ,"lxqt","openbox"]
             final_commands += ["sudo slim"]
     elif power == 2:
             pakages += ["sddm" ,"xfce4"]
