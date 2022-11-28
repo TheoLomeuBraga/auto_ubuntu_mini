@@ -65,7 +65,7 @@ def select_best_ui():
             aditional_repositorys += ["universe"]
             final_commands += ["sudo sddm"]
     elif power == 4:
-            pakages += ["sddm" ,"kde-full"]
+            pakages += ["sddm" ,"kde-plasma-desktop"]
             final_commands += ["sudo sddm"]
     
 
