@@ -10,7 +10,7 @@ pakage_manager_update_repository_command = "sudo apt update"
 
 pakage_manager_instalation_command = "sudo apt install"
 
-pakages = ["xorg ","firefox","wicd","neofetch","htop","nano","gnome-software","discover"]
+pakages = ["xorg ","firefox","wicd","neofetch","htop","nano","gnome-software","discover","bluez"]
 
 final_commands = []
 
